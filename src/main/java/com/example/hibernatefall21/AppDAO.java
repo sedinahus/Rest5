@@ -20,6 +20,16 @@ public class AppDAO {
         return app;
     }
 
+    public List<App> createListOfData(List<App> a){
+        for (App app: a) {
+            entMan.createNativeQuery("INSERT INTO apptbl (id, name) VALUES (?, ?)")
+                    .setParameter(1, null)
+                    .setParameter(2, app.getName())
+                    .executeUpdate();
+        }
+        return a;
+    }
+
     public App getById(int id){
         App app = entMan.find(App.class, id);
         if (app == null){

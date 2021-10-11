@@ -17,10 +17,10 @@ public class AssignmentController {
 
     public AssignmentController() {
         namesMap = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            id = i;
-            namesMap.add(new App(i, "Sedina" + i));
-        }
+//        for (int i = 1; i <= 20; i++) {
+//            id = i;
+//            namesMap.add(new App(i, "Sedina" + i));
+//        }
     }
 
 
@@ -54,6 +54,7 @@ public class AssignmentController {
 
     @RequestMapping(value = "getNames", method = RequestMethod.POST)
     public App hellos(@RequestBody App app) {
+        System.out.println(app);
         App resp = appDAO.create(app);
         return resp;
     }
@@ -94,11 +95,14 @@ public class AssignmentController {
 
     @RequestMapping(value = "sendNames", method = RequestMethod.POST)
     public List<App> hellosList(@RequestBody List<App> bodyReq) {
-        for (App a : bodyReq) {
-            a.setId(++id);
-            this.namesMap.add(a);
-        }
-        return this.namesMap;
+//        for (App a : bodyReq) {
+//            a.setId(id++);
+//            appDAO.create(a);
+//            this.namesMap.add(a);
+//        }
+//        return this.namesMap;
+
+        return appDAO.createListOfData(bodyReq);
     }
 
     private int findName(int id) {
